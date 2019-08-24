@@ -13,8 +13,9 @@ const sendMessage = msg => {
   try {
     const timestamp = new Date(msg.timestamp);
     const timeString = `${timestamp.getUTCMonth() +
-      1}/${timestamp.getUTCDate()} ${timestamp.getUTCHours()}:${timestamp.getUTCMinutes()}:${timestamp.getUTCSeconds()}`;
-    const message = `${timeString} ${msg.username}: ${msg.message}`;
+      1}/${timestamp.getUTCDate()} ${timestamp.getUTCHours()}:${timestamp.getUTCMinutes()}`;
+    const message =
+      '```' + timeString + ' ' + msg.username + ': ' + msg.message + '```';
     channel.send(message);
     console.log('Message logged in Discord.');
   } catch (err) {
