@@ -7,7 +7,6 @@ client.on('ready', () => {
   console.log('Discord loaded');
   const id = settings.DISCORD_CHANNEL;
   channel = client.channels.get(id);
-  console.log(channel);
 });
 
 const sendMessage = msg => {
@@ -16,9 +15,8 @@ const sendMessage = msg => {
     const timeString = `${timestamp.getUTCMonth() +
       1}/${timestamp.getUTCDate()} ${timestamp.getUTCHours()}:${timestamp.getUTCMinutes()}:${timestamp.getUTCSeconds()}`;
     const message = `${timeString} ${msg.username}: ${msg.message}`;
-    console.log('Sending message to Discord');
     channel.send(message);
-    console.log('Message sent.');
+    console.log('Message logged in Discord.');
   } catch (err) {
     console.error(err);
   }

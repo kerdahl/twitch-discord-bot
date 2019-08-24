@@ -18,7 +18,6 @@ const { chat } = new TwitchJs({ token, username });
 
 // Send Twitch chat messages to Discord
 chat.on('PRIVMSG', msg => {
-  console.log('Twitch message received: ', msg);
   discord.sendMessage(msg);
 });
 
