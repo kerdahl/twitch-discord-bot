@@ -35,10 +35,8 @@ chat.on('PRIVMSG/CHEER', msg => {
 
 // Log resubs
 chat.on('USERNOTICE/RESUBSCRIPTION', msg => {
-  const message = `${getTimestamp(msg)} - ${msg.username} resubscribed (${
-    msg.parameters.subPlanName
-  }) with message ${msg.message}`;
-  discord.sendMessage(message);
+  const resub = `${getTimestamp(msg)} - ${msg.systemMessage} - ${msg.message}`;
+  discord.sendMessage(resub);
 });
 
 // Get human-readable timestamp from message
