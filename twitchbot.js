@@ -8,18 +8,43 @@ const username = settings.TWITCH_USER;
 const channel = settings.TWITCH_CHANNEL;
 
 // Instantiate clients
-//const { chat, chatConstants } = new TwitchJs({ token, username });
-const { chat } = new TwitchJs({ token, username });
+const { chat, chatConstants } = new TwitchJs({ token, username });
 
-//const log = msg => console.log(msg);
+const log = msg => {
+  if (settings.DEBUG === 'yes') {
+    console.log(msg);
+  }
+};
 
-// Log everything to console
-//chat.on(chatConstants.EVENTS.ALL, log);
+// Log events
+chat.on(chatConstants.EVENTS.ALL, log);
 
-// Send Twitch chat messages to Discord
+// Log regular chat messages
 chat.on('PRIVMSG', msg => {
-  discord.sendMessage(msg);
+  const message = `${getTimestamp(msg)} - ${msg.username}: ${msg.message}`;
+  discord.sendMessage(message);
 });
+
+// Log cheers
+chat.on('PRIVMSG/CHEER', msg => {
+  const message = `${getTimestamp(msg)} - ${msg.username} gave ${
+    msg.bits
+  } bits with message: ${msg.message}`;
+  discord.sendMessage(message);
+});
+
+// Log resubs
+chat.on('USERNOTICE/RESUBSCRIPTION', msg => {
+  const resub = `${getTimestamp(msg)} - ${msg.systemMessage} - ${msg.message}`;
+  discord.sendMessage(resub);
+});
+
+// Get human-readable timestamp from message
+const getTimestamp = msg => {
+  const timestamp = new Date(msg.timestamp);
+  return `${timestamp.getUTCMonth() +
+    1}/${timestamp.getUTCDate()} ${timestamp.getUTCHours()}:${timestamp.getUTCMinutes()} UTC`;
+};
 
 // Connect ...
 const connect = async () => {
