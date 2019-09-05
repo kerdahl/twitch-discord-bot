@@ -10,8 +10,10 @@ const ErrorSchema = mongoose.Schema({
     required: true
   },
   data: {
-    type: Object,
-    required: false
+    type: String,
+    set: function(data) {
+      return JSON.stringify(data);
+    }
   }
 });
 
