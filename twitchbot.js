@@ -45,7 +45,7 @@ const getTimestamp = msg => {
   //const timestamp = new Date(msg.timestamp);
   //return `${timestamp.getUTCMonth() +
   //  1}/${timestamp.getUTCDate()} ${timestamp.getUTCHours()}:${timestamp.getUTCMinutes()} UTC`;
-  moment(msg.timestamp).format('M/D/YYYY H:mm [UTC]');
+  return moment(msg.timestamp).format('M/D/YYYY H:mm [UTC]');
 };
 
 // Connect ...
