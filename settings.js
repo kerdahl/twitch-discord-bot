@@ -6,6 +6,7 @@ const TWITCH_TOKEN = process.env.TWITCH_TOKEN;
 const TWITCH_USER = process.env.TWITCH_USER;
 const TWITCH_CHANNEL = process.env.TWITCH_CHANNEL;
 const DEBUG = process.env.DEBUG;
+const MONGO_STRING = process.env.MONGO_STRING;
 
 module.exports = {
   DISCORD_CHANNEL,
@@ -13,5 +14,6 @@ module.exports = {
   TWITCH_CHANNEL,
   TWITCH_TOKEN,
   TWITCH_USER,
-  DEBUG
+  DEBUG,
+  MONGO_STRING
 };
