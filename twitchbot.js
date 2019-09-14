@@ -40,6 +40,14 @@ chat.on('USERNOTICE/RESUBSCRIPTION', msg => {
   discord.sendMessage(resub);
 });
 
+// Log bans to console
+chat.on('CLEARCHAT/USER_BANNED', msg => {
+  const banned = `${getTimestamp(msg)} - ${msg.username} was banned for ${
+    msg.tags.banDuration
+  } seconds. Reason: ${msg.tags.banReason}`;
+  discord.sendMessage(banned);
+});
+
 // Get human-readable timestamp from message
 const getTimestamp = msg => {
   //const timestamp = new Date(msg.timestamp);
