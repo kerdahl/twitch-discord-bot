@@ -24,10 +24,10 @@
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "moment": "^2.24.0",
-    "mongoose": "^5.6.12",
+    "mongoose": "^5.7.1",
     "twitch-js": "^2.0.0-beta.30"
   },
   "devDependencies": {
-    "eslint": "^6.2.2"
+    "eslint": "^6.4.0"
   }
 }
